@@ -1,5 +1,5 @@
 ;;;; package.lisp
 
 (defpackage #:numery
-  (:use #:cl))
-
+  (:use #:cl :lisp-unit)
+  (:export :numery))
