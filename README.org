@@ -1,0 +1,3 @@
+* NumeryCL
+
+NumeryCL is a Common Lisp library for computing numerical error of various computation methods.
