@@ -63,6 +63,30 @@
    (format nil "Sum -0.20727664 at sequence number 12 ~%")
    (series-sum-1 #'series-1))))
 
+;; -- Function errors --
+(ql:quickload "cl-autodiff")
+;; Computing derivatives using cl-autodiff is done by using:
+;; (define-with-derivatives p (x) (* x x))
+;; (multiple-value-bind (val der) (p 3) (format t "Value ~d~%" val) (format t "Derivative ~d~%" der))
+(define-with-derivatives f (x) (* x x x))
+
+(defun get-derivative-from (expression)
+  (elt (nth-value 1 expression) 0))
+
+(defun absolute-function-error (derf dx)
+  "Computes the absolute error for f(x) values assuming that x's
+   are given with dx precision"
+  (* (abs derf) dx))
+
+
+(define-test test-absolute-function--error
+  (setq *print-failures* t)
+  (assert-true (< 0.48
+                  (absolute-function-error (get-derivative-from (f 2.3)) 0.03d0)
+                  0.5)))
+
+
+
 ;; To run tests in SLIME use
 ;; (ql:quickload "numery")
 ;; (in-package :numery)

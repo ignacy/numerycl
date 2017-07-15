@@ -1,3 +1,48 @@
 * NumeryCL
 
-NumeryCL is a Common Lisp library for computing numerical error of various computation methods.
+This is a record of a couple of afternoons I spent playing with Common
+Lisp and numerical errors.  It's not usable in any form or
+matter. I'll keep it around as a reminder of how easy is to do this
+kind of stuff in CL.
+
+** Running the tests
+
+With quicklisp in place
+
+#+BEGIN_SRC
+
+CL_USER> (ql:quickload "cl-autodiff")
+CL-USER> (ql:quickload "numery")
+To load "numery":
+  Load 1 ASDF system:
+    numery
+; Loading "numery"
+To load "cl-autodiff":
+  Load 1 ASDF system:
+    cl-autodiff
+; Loading "cl-autodiff"
+
+
+("numery")
+CL-USER> (in-package :numery)
+#<PACKAGE "NUMERY">
+NUMERY> (run-tests)
+TEST-ABSOLUTE-ERROR: 3 assertions passed, 0 failed.
+
+TEST-RELATIVE-ERROR: 2 assertions passed, 0 failed.
+
+TEST-FACTORIAL: 2 assertions passed, 0 failed.
+
+TEST-SERIES-SUM-1: 1 assertions passed, 0 failed.
+
+Unit Test Summary
+ | 8 assertions total
+ | 8 passed
+ | 0 failed
+ | 0 execution errors
+ | 0 missing tests
+
+#<TEST-RESULTS-DB Total(8) Passed(8) Failed(0) Errors(0)>
+
+NUMERY>
+#+END_SRC
